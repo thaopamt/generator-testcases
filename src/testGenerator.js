@@ -29,8 +29,9 @@ async function generateTestCases() {
 
   for (const [index, subtest] of config.SUBTESTS.entries()) {
     for (let j = 0; j < counts[index]; j++) {
-      const n = randomInRange(subtest.minN, subtest.maxN);
-      const input = `${n}`;
+      const a = randomInRange(subtest.minN, subtest.maxN);
+      const b = randomInRange(a, subtest.maxN);
+      const input = `${a} ${b}`;
       const output = await runProgram(input);
 
       await fs.writeFile(path.join(testCasesDir, `${caseNumber}.inp`), input);
